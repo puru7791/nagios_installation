@@ -1,2 +1,2 @@
 # nagios_installation
-This is yml script for installing nagios-Core on CentOS Distribution
+* A playbook for installing and configuring Nagios-core in Centos Machines
