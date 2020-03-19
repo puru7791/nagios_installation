@@ -38,18 +38,18 @@
       loop: "{{ packages_for_centos }}"
       tags:
         - nagios
-    - name: downloading nagioscore # Downloading zip file form source
+    - name: downloading nagioscore # Downloading zip file from source
       get_url:
         dest:  /tmp/nagioscore.tar.gz
         url:  https://github.com/NagiosEnterprises/nagioscore/archive/nagios-4.4.5.tar.gz
         mode: u+x,g+x,o+x
-    - name: unzipping file i.e "nagioscore.tar.gz"
+    - name: unzipping file i.e "nagioscore.tar.gz"  # Unzipping nagioscore.tar.gz file
       unarchive:
         src: /tmp/nagioscore.tar.gz
         dest: "/tmp/"
         remote_src: yes
         
-    - name: compiling Code
+    - name: compiling Code    # compiling code using shell module in ansible
       shell: 
         cmd: sudo ./configure > configure.log && sudo make all > makeoutput.log
       args: 
@@ -83,7 +83,7 @@
       shell: sudo make install-webconf > webconf.log
       args:
         chdir: /tmp/nagioscore-nagios-4.4.5/
-    - name: Install latest passlib with pip
+    - name: Install latest passlib with pip   # Before running this task ensure python-pip is to be installed
       pip: name=passlib
     - name: Create Nagiosadmin User Account
       htpasswd:
